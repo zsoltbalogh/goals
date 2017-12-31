@@ -1440,8 +1440,7 @@ figure:hover:before {
     float: none; }
 
 @media screen and (min-width: 768px) {
-  .main-panel {
-    margin-left: 12.5rem; } }
+}
 
 .row {
   margin-right: -0.375rem;
@@ -2382,10 +2381,7 @@ footer.session-footer {
 .layout-fixed-header .main-panel > .header {
   position: fixed;
   top: 0; }
-
-.layout-fixed-header .main-content {
-  padding-top: 4.188rem; }
-  .layout-fixed-header .main-content.no-padding {
+.layout-fixed-header .main-content.no-padding {
     padding-top: 3.438rem;
     padding-left: 0;
     padding-right: 0;
