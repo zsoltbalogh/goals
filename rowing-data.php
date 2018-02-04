@@ -1,16 +1,20 @@
 <?php
 $rowing_before_2018 = 627654;
-$rowing = array(
-"2018-01-02" => array(8126, 40),
-"2018-01-04" => array(6132, 30),
-"2018-01-05" => array(10015, 48+19/60),
-"2018-01-07" => array(12029, 60),
-"2018-01-13" => array(8355, 40),
-"2018-01-26" => array(8112, 40),
-"2018-01-28" => array(8010, 40),
-"2018-01-30" => array(8398, 40),
-"2018-02-03" => array(21097, 104)
-);
+$rowing = array();
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "http://danube.bzz.hu/data.php");
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$content = curl_exec($ch);
+curl_close($ch);
+
+$lines = explode("\n", $content);
+$c = 0;
+
+foreach ($lines as $line) {
+    $parts = explode(",", $line);
+    $rowing[$parts[0]] = array($parts[2], $parts[1]);
+}
 
 $rowing_all_2018 = 0;
 foreach ($rowing as $m) $rowing_all_2018 += $m[0];
