@@ -2,7 +2,7 @@
 $rowing_before_2018 = 627654;
 $rowing = array();
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "http://danube.bzz.hu/data.php");
+curl_setopt($ch, CURLOPT_URL, "http://danube.bzz.hu/data.php?pu=1");
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $content = curl_exec($ch);

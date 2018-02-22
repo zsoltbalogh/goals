@@ -141,7 +141,7 @@ include_once "ladarace-data.php";
 
             <?php
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://danube.bzz.hu/map.php?nopanorama=1&g=".calc($rowing_goal, "2020-12-31")."&p=".$rowing_all_2018);
+            curl_setopt($ch, CURLOPT_URL, "http://danube.bzz.hu/map.php?pu=1&g=".calc($rowing_goal, "2020-12-31")."&p=".$rowing_all_2018);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             $content = curl_exec($ch);
@@ -185,11 +185,11 @@ include_once "ladarace-data.php";
               <div class="overflow-hidden" style="margin-top:1px;">
                 <h4 class="m-a-0"><?php echo round(($rowing_all_2018 + $rowing_before_2018)/1000)?> kms</h4>
                 <h6 class="m-a-0 text-muted"><a href="https://log.concept2.com/log">Lifetime <?php 
-                $left = 1000000-$rowing_all_2018;
+                $left = 1000000-$rowing_all_2018 - $rowing_before_2018;
                 $t = time() - strtotime("2018-01-01");
                 $to = $t / $rowing_all_2018;
                 $needed = $left*$to;
-                echo "(".date("d/M", time() + $needed). " to join MMC)";
+                echo "(".date("d/M/y", time() + $needed). " to join MMC)";
                 ?></a></h6>
               </div>
             </div>
