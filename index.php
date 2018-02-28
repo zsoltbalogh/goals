@@ -1,4 +1,6 @@
 <?php
+include_once "vendor/autoload.php";
+
 if ($_COOKIE['goal_auth'] != 'goalsohs') {
     die("set cookie!");
 }
@@ -184,7 +186,7 @@ include_once "ladarace-data.php";
             <div class="card card-block no-border bg-white">
               <div class="overflow-hidden" style="margin-top:1px;">
                 <h4 class="m-a-0"><?php echo round(($rowing_all_2018 + $rowing_before_2018)/1000)?> kms</h4>
-                <h6 class="m-a-0 text-muted"><a href="https://log.concept2.com/log">Lifetime <?php 
+                <h6 class="m-a-0 text-muted"><a href="https://log.concept2.com/log">Lifetime <?php
                 $left = 1000000-$rowing_all_2018 - $rowing_before_2018;
                 $t = time() - strtotime("2018-01-01");
                 $to = $t / $rowing_all_2018;
