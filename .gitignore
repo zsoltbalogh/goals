@@ -1,3 +1,4 @@
 vendor
 .ftp-config
 live-config
+config_local.php
