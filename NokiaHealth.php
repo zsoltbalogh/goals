@@ -61,6 +61,14 @@ class NokiaHealth extends AbstractService
     /**
      * {@inheritdoc}
      */
+    protected function getScopesDelimiter()
+    {
+        return ',';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function parseAccessTokenResponse($responseBody)
     {
         $data = json_decode($responseBody, true);

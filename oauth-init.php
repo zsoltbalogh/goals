@@ -18,6 +18,7 @@ $credentials = new Credentials(
 $serviceFactory = new \OAuth\ServiceFactory();
 $uriFactory = new \OAuth\Common\Http\Uri\UriFactory();
 $oauth_storage = new MixedStorage($conn, 1);
-$ns = $serviceFactory->createService("NokiaHealth", $credentials, $oauth_storage, array('user.activity'));
+
+$ns = $serviceFactory->createService("NokiaHealth", $credentials, $oauth_storage, array('user.info', 'user.metrics', 'user.activity'));
 
 ?>

@@ -137,10 +137,10 @@ fetch_data("journey");
                 <div class="card card-block no-border bg-white row-equal align-middle">
                   <div class="column">
                     <h6 class="m-a-0 text-uppercase"><a href="https://dashboard.health.nokia.com/12889548/weight/graph">weight</a></h6>
-                    <small class="bold text-muted"><?php echo $weight ?> kg</small>
+                    <small class="bold text-muted"><?php echo $data['weight_now'] ?> kg</small>
                   </div>
                   <div class="column">
-                    <?php $n = round($weight - ($weight_goal + 8-calc(8)), 1)?>
+                    <?php $n = round($data['weight_now'] - ($data['weight_goal'] + 8-calc(8)), 1)?>
                     <h3 class="m-a-0 text-<?php echo $n <= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
                   </div>
                 </div>
