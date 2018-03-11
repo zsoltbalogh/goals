@@ -21,12 +21,15 @@ function fetch_data($prefix, $ttl = 3600) {
     $q = mysqli_query($conn, "SELECT `value`, last_update FROM cache WHERE user_id = $user_id and `key` = '$prefix'");
     $row = mysqli_fetch_object($q);
 
-    if (!$row || (time() - $row->last_update) >= $ttl) {
+    if (!$row || (time() - $row->last_update) >= $ttl || isset($_GET['ignore-cache'])) {
       $data_glob = $data;
       $data = array();
+
       include_once $prefix."-data.php";
+
       $data_spec = $data;
 
+      mysqli_query($conn, "DELETE FROM cache WHERE user_id = $user_id AND `key`='$prefix'");
       mysqli_query($conn, "INSERT INTO cache (user_id, `key`, `value`, last_update) VALUES ($user_id, '$prefix', '".bin2hex(serialize($data_spec))."', ".time().")");
       echo mysqli_error($conn);
 
