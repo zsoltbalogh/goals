@@ -5,10 +5,10 @@ if ($_COOKIE['goal_auth'] != 'goalsohs') {
     die("set cookie!");
 }
 
-function calc($p, $deadline = "2018-12-31") {
+function calc($p, $deadline = "2018-12-31", $start_date = "2018-01-01") {
     $now = time();
     $deadline = strtotime($deadline . " 23:59");
-    $start = strtotime("2018-01-01 00:00:00");
+    $start = strtotime($start_date . " 00:00:00");
     $secondspp = ($deadline - $start) / $p;
     return ($now - $start) / $secondspp;
 }
@@ -18,6 +18,7 @@ include_once "hiking-data.php";
 include_once "rowing-data.php";
 include_once "weight-data.php";
 include_once "ladarace-data.php";
+include_once "journey-data.php";
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -82,12 +83,13 @@ include_once "ladarace-data.php";
               <div class="col-sm-6">
                 <div class="card card-block no-border bg-white row-equal align-middle">
                   <div class="column">
-                    <h6 class="m-a-0 text-uppercase">hiking</h6>
-                    <small class="bold text-muted"><?php echo $hiking_hikes_2018?>/52</small>
+                    <h6 class="m-a-0 text-uppercase">journey</h6>
+                    <?php $amount = calc(4007500, "2019-03-13", "2018-03-13"); if ($amount < 0) $amount = 0; ?>
+                    <small class="bold text-muted"><?php echo $journey_amount - $amount ?></small>
                   </div>
                   <div class="column">
                     <?php $n = $hiking_hikes_2018 - floor(calc(52)) ?>
-                    <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
+                    <h3 class="m-a-0 text-<?php echo ($journey_amount - $amount) >= 0 ? "success" : "danger" ?>"><?php echo round($journey_amount/1000, 1) ?> eFt</h3>
                   </div>
                 </div>
               </div>
