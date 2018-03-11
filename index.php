@@ -44,7 +44,8 @@ include_once "books-data.php";
 include_once "hiking-data.php";
 include_once "rowing-data.php";
 include_once "weight-data.php";
-include_once "ladarace-data.php";
+
+fetch_data("ladarace");
 fetch_data("journey");
 
 ?>
@@ -125,10 +126,10 @@ fetch_data("journey");
                 <div class="card card-block no-border bg-white row-equal align-middle">
                   <div class="column">
                     <h6 class="m-a-0 text-uppercase"><a href="http://gc.bzz.hu">ladarace</a></h6>
-                    <small class="bold text-muted"><?php echo $ladarace_found ?></small>
+                    <small class="bold text-muted"><?php echo $data['ladarace_found'] ?></small>
                   </div>
                   <div class="column">
-                    <h3 class="m-a-0 text-danger"><?php echo $ladarace_standing.". ("; echo $ladarace_found - $ladarace_first; echo ")" ?></h3>
+                    <h3 class="m-a-0 text-danger"><?php echo $data['ladarace_standing'].". ("; echo $data['ladarace_found'] - $data['ladarace_first']; echo ")" ?></h3>
                   </div>
                 </div>
               </div>

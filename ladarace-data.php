@@ -21,3 +21,7 @@ foreach ($lines as $line) {
         $ladarace_found = $parts[3];
     }
 }
+
+$data['ladarace_standing'] = $ladarace_standing;
+$data['ladarace_found'] = $ladarace_found;
+$data['ladarace_first'] = $ladarace_first;
