@@ -12,3 +12,5 @@ $ps = strpos($content, "<strong>", $pe - 25);
 $amount = str_replace(' ', '', substr($content, $ps + 8, $pe - $ps - 8));
 
 $journey_amount = $amount;
+
+$data['journey_amount'] = $journey_amount;

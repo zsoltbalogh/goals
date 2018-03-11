@@ -1,5 +1,7 @@
 <?php
+include_once "init.php";
 include_once "vendor/autoload.php";
+$user_id = 1;
 
 if ($_COOKIE['goal_auth'] != 'goalsohs') {
     die("set cookie!");
@@ -13,12 +15,38 @@ function calc($p, $deadline = "2018-12-31", $start_date = "2018-01-01") {
     return ($now - $start) / $secondspp;
 }
 
+function fetch_data($prefix, $ttl = 3600) {
+    global $conn, $user_id, $data;
+
+    $q = mysqli_query($conn, "SELECT `value`, last_update FROM cache WHERE user_id = $user_id and `key` = '$prefix'");
+    $row = mysqli_fetch_object($q);
+
+    if (!$row || (time() - $row->last_update) >= $ttl) {
+      $data_glob = $data;
+      $data = array();
+      include_once $prefix."-data.php";
+      $data_spec = $data;
+
+      mysqli_query($conn, "INSERT INTO cache (user_id, `key`, `value`, last_update) VALUES ($user_id, '$prefix', '".bin2hex(serialize($data_spec))."', ".time().")");
+      echo mysqli_error($conn);
+
+      $data = array_merge($data_glob, $data_spec);
+    }
+    else {
+      $data_glob = $data;
+      $data = array_merge($data_glob, unserialize(hex2bin($row->value)));
+    }
+}
+
+$data = array();
+
 include_once "books-data.php";
 include_once "hiking-data.php";
 include_once "rowing-data.php";
 include_once "weight-data.php";
 include_once "ladarace-data.php";
-include_once "journey-data.php";
+fetch_data("journey");
+
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -85,11 +113,11 @@ include_once "journey-data.php";
                   <div class="column">
                     <h6 class="m-a-0 text-uppercase">journey</h6>
                     <?php $amount = calc(4007500, "2019-03-13", "2018-03-13"); if ($amount < 0) $amount = 0; ?>
-                    <small class="bold text-muted"><?php echo $journey_amount - $amount ?></small>
+                    <small class="bold text-muted"><?php echo $data['journey_amount'] - $amount ?></small>
                   </div>
                   <div class="column">
                     <?php $n = $hiking_hikes_2018 - floor(calc(52)) ?>
-                    <h3 class="m-a-0 text-<?php echo ($journey_amount - $amount) >= 0 ? "success" : "danger" ?>"><?php echo round($journey_amount/1000, 1) ?> eFt</h3>
+                    <h3 class="m-a-0 text-<?php echo ($data['journey_amount'] - $amount) >= 0 ? "success" : "danger" ?>"><?php echo round($data['journey_amount']/1000, 1) ?> eFt</h3>
                   </div>
                 </div>
               </div>
