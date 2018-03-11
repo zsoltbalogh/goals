@@ -42,8 +42,8 @@ $data = array();
 
 include_once "books-data.php";
 include_once "hiking-data.php";
-include_once "rowing-data.php";
 
+fetch_data("rowing");
 fetch_data("weight");
 fetch_data("ladarace");
 fetch_data("journey");
@@ -174,7 +174,7 @@ fetch_data("journey");
 
             <?php
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://danube.bzz.hu/map.php?pu=1&g=".calc($rowing_goal, "2020-12-31")."&p=".$rowing_all_2018);
+            curl_setopt($ch, CURLOPT_URL, "http://danube.bzz.hu/map.php?pu=1&g=".calc($data['rowing_goal'], "2020-12-31")."&p=".$data['rowing_all_2018']);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             $content = curl_exec($ch);
@@ -201,7 +201,7 @@ fetch_data("journey");
                   <i class="icon-action-redo"></i>
                 </div>
                 <div class="absolute lt rt bt p-a">
-                  <h4>Danube <br><?php echo round($rowing_all_2018/1000, 2) ?> kms from source</h4>
+                  <h4>Danube <br><?php echo round($data['rowing_all_2018']/1000, 2) ?> kms from source</h4>
                 </div>
               </div>
             </div>
@@ -209,18 +209,18 @@ fetch_data("journey");
           <div class="col-md-4">
             <div class="card card-block no-border bg-white">
               <div class="overflow-hidden" style="margin-top:1px;">
-                <?php $n = $rowing_all_2018 - floor(calc($rowing_goal, "2020-12-31")) ?>
-                <h4 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $rowing_all_2018 ?> m (<?php echo $n > 0 ? "+".$n : $n ?> m)</h4>
+                <?php $n = $data['rowing_all_2018'] - floor(calc($data['rowing_goal'], "2020-12-31")) ?>
+                <h4 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $data['rowing_all_2018'] ?> m (<?php echo $n > 0 ? "+".$n : $n ?> m)</h4>
                 <h6 class="m-a-0 text-muted">Danube challenge</h6>
               </div>
             </div>
             <div class="card card-block no-border bg-white">
               <div class="overflow-hidden" style="margin-top:1px;">
-                <h4 class="m-a-0"><?php echo round(($rowing_all_2018 + $rowing_before_2018)/1000)?> kms</h4>
+                <h4 class="m-a-0"><?php echo round(($data['rowing_all_2018'] + $data['rowing_before_2018'])/1000)?> kms</h4>
                 <h6 class="m-a-0 text-muted"><a href="https://log.concept2.com/log">Lifetime <?php
-                $left = 1000000-$rowing_all_2018 - $rowing_before_2018;
+                $left = 1000000-$data['rowing_all_2018'] - $data['rowing_before_2018'];
                 $t = time() - strtotime("2018-01-01");
-                $to = $t / $rowing_all_2018;
+                $to = $t / $data['rowing_all_2018'];
                 $needed = $left*$to;
                 echo "(".date("d/M/y", time() + $needed). " to join MMC)";
                 ?></a></h6>
@@ -228,8 +228,7 @@ fetch_data("journey");
             </div>
             <div class="card card-block no-border bg-white">
               <div class="overflow-hidden" style="margin-top:1px;">
-                <?php $n = round($rowing_jan - floor(calc(900, "2018-01-31"))) ?>
-                <h4 class="m-a-0"><?php echo $rowing_max ?> m</h4>
+                <h4 class="m-a-0"><?php echo $data['rowing_max'] ?> m</h4>
                 <h6 class="m-a-0 text-muted">Longest 2018</h6>
               </div>
             </div>

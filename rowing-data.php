@@ -25,4 +25,8 @@ $rowing_goal = 2801791;
 
 $rowing_max = 0;
 foreach ($rowing as $m) if ($m[0] > $rowing_max) $rowing_max = $m[0];
-?>
+
+$data['rowing_max'] = $rowing_max;
+$data['rowing_all_2018'] = $rowing_all_2018;
+$data['rowing_goal'] = $rowing_goal;
+$data['rowing_before_2018'] = $rowing_before_2018;
