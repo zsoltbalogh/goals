@@ -43,8 +43,8 @@ $data = array();
 include_once "books-data.php";
 include_once "hiking-data.php";
 include_once "rowing-data.php";
-include_once "weight-data.php";
 
+fetch_data("weight");
 fetch_data("ladarace");
 fetch_data("journey");
 
