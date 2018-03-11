@@ -172,15 +172,7 @@ fetch_data("journey");
                 }
             </style>
 
-            <?php
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://danube.bzz.hu/map.php?pu=1&g=".calc($data['rowing_goal'], "2020-12-31")."&p=".$data['rowing_all_2018']);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            $content = curl_exec($ch);
-            curl_close($ch);
-            echo $content;
-            ?>
+            <?php echo $data['rowing_map'] ?>
             </div>
           </div>
           <div class="col-md-4">
