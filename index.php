@@ -43,9 +43,7 @@ function fetch_data($prefix, $ttl = 3600) {
 
 $data = array();
 
-include_once "books-data.php";
-include_once "hiking-data.php";
-
+fetch_data("books", 86400);
 fetch_data("rowing");
 fetch_data("weight");
 fetch_data("ladarace");
@@ -104,10 +102,10 @@ fetch_data("journey");
                 <div class="card card-block no-border bg-white row-equal align-middle">
                   <div class="column">
                     <h6 class="m-a-0 text-uppercase"><a href="https://www.goodreads.com/challenges/7501-2018-reading-challenge">books</a></h6>
-                    <small class="bold text-muted"><?php echo $books_read_2018?>/25</small>
+                    <small class="bold text-muted"><?php echo $data['books_read_2018']?>/25</small>
                   </div>
                   <div class="column">
-                    <?php $n = $books_read_2018 - floor(calc(25)) ?>
+                    <?php $n = $data['books_read_2018'] - floor(calc(25)) ?>
                     <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
                   </div>
                 </div>
