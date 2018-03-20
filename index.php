@@ -46,7 +46,7 @@ $data = array();
 fetch_data("books", 86400);
 fetch_data("rowing");
 fetch_data("weight");
-fetch_data("ladarace");
+fetch_data("steps");
 fetch_data("journey");
 
 ?>
@@ -118,7 +118,6 @@ fetch_data("journey");
                     <small class="bold text-muted"><?php echo $data['journey_amount'] - $amount ?></small>
                   </div>
                   <div class="column">
-                    <?php $n = $hiking_hikes_2018 - floor(calc(52)) ?>
                     <h3 class="m-a-0 text-<?php echo ($data['journey_amount'] - $amount) >= 0 ? "success" : "danger" ?>"><?php echo round($data['journey_amount']/1000, 1) ?> eFt</h3>
                   </div>
                 </div>
@@ -126,11 +125,12 @@ fetch_data("journey");
               <div class="col-sm-6">
                 <div class="card card-block no-border bg-white row-equal align-middle">
                   <div class="column">
-                    <h6 class="m-a-0 text-uppercase"><a href="http://gc.bzz.hu">ladarace</a></h6>
-                    <small class="bold text-muted"><?php echo $data['ladarace_found'] ?></small>
+                    <h6 class="m-a-0 text-uppercase">440 badge</h6>
+                    <small class="bold text-muted"><?php echo $data['steps_count'] ?></small>
                   </div>
                   <div class="column">
-                    <h3 class="m-a-0 text-danger"><?php echo $data['ladarace_standing'].". ("; echo $data['ladarace_found'] - $data['ladarace_first']; echo ")" ?></h3>
+                    <?php $n = $data['steps_count'] - round(calc(440000, "2018-04-15", "2018-03-19")); ?>
+                    <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
                   </div>
                 </div>
               </div>

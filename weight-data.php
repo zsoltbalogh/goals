@@ -1,7 +1,7 @@
 <?php
 //{"status":0,"body":{"updatetime":1515003660,"more":1,"measuregrps":[{"grpid":996764374,"attrib":0,"date":1514957099,"category":1,"measures":[{"value":88716,"type":1,"unit":-3}]},{"grpid":995796767,"attrib":0,"date":1514868785,"category":1,"measures":[{"value":88665,"type":1,"unit":-3}]},{"grpid":995056915,"attrib":0,"date":1514790646,"category":1,"measures":[{"value":89530,"type":1,"unit":-3}]}],"timezone":"Europe\/Budapest"}}
 
-include_once "oauth-init.php";
+include "oauth-init.php";
 
 $token = $oauth_storage->retrieveAccessToken("NokiaHealth");
 
