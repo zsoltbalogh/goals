@@ -48,7 +48,7 @@ fetch_data("rowing");
 fetch_data("weight");
 fetch_data("steps");
 fetch_data("journey");
-
+fetch_data("skills");
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -129,7 +129,7 @@ fetch_data("journey");
                     <small class="bold text-muted"><?php echo $data['steps_count'] ?></small>
                   </div>
                   <div class="column">
-                    <?php $n = $data['steps_count'] - round(calc(440000, "2018-04-15", "2018-03-19")); ?>
+                    <?php $n = $data['steps_count'] - 440000; ?>
                     <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
                   </div>
                 </div>
@@ -151,13 +151,13 @@ fetch_data("journey");
           <div class="col-md-12 col-lg-4">
             <div class="card card-block no-border bg-white">
               <div class="overflow-hidden" style="margin-top:1px;">
-                <h4 class="m-a-0">4 <i>(50)</i></h4>
+                <h4 class="m-a-0">40 <i>(50)</i></h4>
                 <h6 class="m-a-0 text-muted">Presentation goal</h6>
               </div>
             </div>
             <div class="card card-block no-border bg-white">
               <div class="overflow-hidden" style="margin-top:1px;">
-                <h4 class="m-a-0">0</h4>
+                <h4 class="m-a-0"><?php echo $data['skills_count'] ?></h4>
                 <h6 class="m-a-0 text-muted">New skills</h6>
               </div>
             </div>
