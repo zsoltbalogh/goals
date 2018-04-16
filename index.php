@@ -46,7 +46,7 @@ $data = array();
 fetch_data("books", 86400);
 fetch_data("rowing");
 fetch_data("weight");
-fetch_data("steps");
+fetch_data("cal");
 fetch_data("journey");
 fetch_data("skills");
 ?>
@@ -125,11 +125,11 @@ fetch_data("skills");
               <div class="col-sm-6">
                 <div class="card card-block no-border bg-white row-equal align-middle">
                   <div class="column">
-                    <h6 class="m-a-0 text-uppercase">440 badge</h6>
-                    <small class="bold text-muted"><?php echo $data['steps_count'] ?></small>
+                    <h6 class="m-a-0 text-uppercase">Weekly calories</h6>
+                    <small class="bold text-muted"><?php echo $data['cal_count'] ?></small>
                   </div>
                   <div class="column">
-                    <?php $n = $data['steps_count'] - 440000; ?>
+                    <?php $n = $data['cal_count'] - round(calc(3000, date("Y-m-d", strtotime("this Sunday")), date("Y-m-d", strtotime("this Monday")))); ?>
                     <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
                   </div>
                 </div>
