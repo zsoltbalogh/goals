@@ -4,7 +4,7 @@ include "oauth-init.php";
 $token = $oauth_storage->retrieveAccessToken("NokiaHealth");
 
 $ns->refreshAccessToken($token);
-$start = date("Y-m-d", strtotime("this Monday"));
+$start = date("Y-m-d", strtotime("Monday this week"));
 $end = date("Y-m-d");
 $result = json_decode($ns->request("v2/measure?action=getactivity&startdateymd=$start&enddateymd=$end"), true);
 

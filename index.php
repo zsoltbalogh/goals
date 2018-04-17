@@ -129,7 +129,7 @@ fetch_data("skills");
                     <small class="bold text-muted"><?php echo $data['cal_count'] ?></small>
                   </div>
                   <div class="column">
-                    <?php $n = $data['cal_count'] - round(calc(3000, date("Y-m-d", strtotime("this Sunday")), date("Y-m-d", strtotime("this Monday")))); ?>
+                    <?php $n = $data['cal_count'] - round(calc(3000, date("Y-m-d", strtotime("Sunday this week")), date("Y-m-d", strtotime("Monday this week")))); ?>
                     <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
                   </div>
                 </div>
