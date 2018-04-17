@@ -125,7 +125,7 @@ fetch_data("skills");
               <div class="col-sm-6">
                 <div class="card card-block no-border bg-white row-equal align-middle">
                   <div class="column">
-                    <h6 class="m-a-0 text-uppercase">Weekly calories</h6>
+                    <h6 class="m-a-0 text-uppercase">Calories</h6>
                     <small class="bold text-muted"><?php echo $data['cal_count'] ?></small>
                   </div>
                   <div class="column">

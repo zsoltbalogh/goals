@@ -12,5 +12,5 @@ $cals = 0;
 foreach ($result['body']['activities'] as $r) {
   $cals += $r['calories'];
 }
-$data['cal_count'] = $cals;
+$data['cal_count'] = round($cals);
 ?>
