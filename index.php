@@ -115,10 +115,10 @@ fetch_data("skills");
                   <div class="column">
                     <h6 class="m-a-0 text-uppercase">journey</h6>
                     <?php $amount = calc(4007500, "2019-03-13", "2018-03-13"); if ($amount < 0) $amount = 0; ?>
-                    <small class="bold text-muted"><?php echo round($data['journey_amount'] - $amount) ?> Ft</small>
+                    <small class="bold text-muted"><?php echo round(($data['journey_amount'] - $amount)/1000) ?> eFt</small>
                   </div>
                   <div class="column">
-                    <h3 class="m-a-0 text-<?php echo ($data['journey_amount'] - $amount) >= 0 ? "success" : "danger" ?>"><?php echo round($data['journey_amount']/1000, 1) ?> eFt</h3>
+                    <h3 class="m-a-0 text-<?php echo ($data['journey_amount'] - $amount) >= 0 ? "success" : "danger" ?>"><?php echo round($data['journey_amount']/1000) ?></h3>
                   </div>
                 </div>
               </div>
