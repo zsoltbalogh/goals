@@ -21,7 +21,7 @@ function fetch_data($prefix, $ttl = 3600) {
     $q = mysqli_query($conn, "SELECT `value`, last_update FROM cache WHERE user_id = $user_id and `key` = '$prefix'");
     $row = mysqli_fetch_object($q);
 
-    if (!$row || (time() - $row->last_update) >= $ttl || isset($_GET['ignore-cache'])) {
+    if (!$row || (time() - $row->last_update) >= $ttl || (isset($_GET['ignore-cache']) && $_GET['ignore-cache'] == $prefix)) {
       $data_glob = $data;
       $data = array();
 
@@ -106,7 +106,7 @@ fetch_data("skills");
                   </div>
                   <div class="column">
                     <?php $n = $data['books_read_2018'] - floor(calc(25)) ?>
-                    <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
+                    <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><a href="index.php?ignore-cache=books"><?php echo $n > 0 ? "+".$n : $n ?></a></h3>
                   </div>
                 </div>
               </div>
