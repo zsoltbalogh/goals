@@ -179,14 +179,7 @@ fetch_data("skills");
           <div class="col-md-4">
             <div class="card text-white no-border relative" style="min-height:250px">
               <div class="slide absolute tp lt rt bt" data-ride="carousel" data-interval="4000">
-                <div class="carousel-inner" role="listbox">
-                  <div class="item active" style="background-image:url(images/danube1-400.jpg);background-size:cover;background-repeat: no-repeat;background-position: 50% 50%;width:100%;height:100%;">
-                  </div>
-                  <div class="item" style="background-image:url(images/danube2-400.jpg);background-size:cover;background-repeat: no-repeat;background-position: 50% 50%;width:100%;height:100%;">
-                  </div>
-                  <div class="item" style="background-image:url(images/danube3-400.jpg);background-size:cover;background-repeat: no-repeat;background-position: 50% 50%;width:100%;height:100%;">
-                  </div>
-                </div>
+                  <iframe src="https://office.liferay.hu/journey/iframe.php" width="100%" height="250"></iframe>
               </div>
               <div class="absolute tp lt rt bt" style="background:rgba(0,0,0,.1)"></div>
               <div class="card-block">
