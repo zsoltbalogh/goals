@@ -123,14 +123,14 @@ fetch_data("skills");
                 </div>
               </div>
               <div class="col-sm-6">
+                <?php $n = $data['rowing_all_2018'] - floor(calc($data['rowing_goal'], "2020-12-31")) ?>
                 <div class="card card-block no-border bg-white row-equal align-middle">
                   <div class="column">
-                    <h6 class="m-a-0 text-uppercase">Calories</h6>
-                    <small class="bold text-muted"><?php echo $data['cal_count'] ?></small>
+                    <h6 class="m-a-0 text-uppercase">Danube</h6>
+                    <small class="bold text-muted"><?php echo $data['rowing_all_2018'] ?> m</small>
                   </div>
                   <div class="column">
-                    <?php $n = $data['cal_count'] - round(calc(3000, date("Y-m-d", strtotime("Sunday this week")), date("Y-m-d", strtotime("Monday this week")))); ?>
-                    <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?></h3>
+                    <h3 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $n > 0 ? "+".$n : $n ?> m</h3>
                   </div>
                 </div>
               </div>
@@ -182,14 +182,6 @@ fetch_data("skills");
                   <iframe src="https://office.liferay.hu/journey/iframe.php" width="100%" height="250"></iframe>
               </div>
               <div class="absolute tp lt rt bt" style="background:rgba(0,0,0,.1)"></div>
-              <div class="card-block">
-                <div class="block text-right">
-                  <i class="icon-action-redo"></i>
-                </div>
-                <div class="absolute lt rt bt p-a">
-                  <h4>Danube <br><?php echo round($data['rowing_all_2018']/1000, 2) ?> kms from source</h4>
-                </div>
-              </div>
             </div>
           </div>
           <div class="col-md-4">
