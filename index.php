@@ -46,9 +46,9 @@ $data = array();
 fetch_data("books", 86400);
 fetch_data("rowing");
 fetch_data("weight");
-fetch_data("cal");
 fetch_data("journey");
 fetch_data("skills");
+fetch_data("lastcompleted", 86400);
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -187,9 +187,15 @@ fetch_data("skills");
           <div class="col-md-4">
             <div class="card card-block no-border bg-white">
               <div class="overflow-hidden" style="margin-top:1px;">
-                <?php $n = $data['rowing_all_2018'] - floor(calc($data['rowing_goal'], "2020-12-31")) ?>
-                <h4 class="m-a-0 text-<?php echo $n >= 0 ? "success" : "danger" ?>"><?php echo $data['rowing_all_2018'] ?> m (<?php echo $n > 0 ? "+".$n : $n ?> m)</h4>
-                <h6 class="m-a-0 text-muted">Danube challenge</h6>
+                <?php
+                if ($data['lastcompleted_7x7'] != date("Y-m-d")) { ?>
+                    <h4 class="m-a-0 text-danger">Not yet completed. </h4>
+                    <h6 class="m-a-0 text-muted">7x7 challenge - <a href="index.php?ignore-cache=lastcompleted&update=7x7">done</a></h6>
+                <?php } else { ?>
+                    <h4 class="m-a-0 text-success">Completed for today.</h4>
+                    <h6 class="m-a-0 text-muted">7x7 challenge - <a href="index.php?ignore-cache=lastcompleted&unset=7x7">unset</a></h6>
+                <?php } ?>
+
               </div>
             </div>
             <div class="card card-block no-border bg-white">
